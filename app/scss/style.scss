@@ -1,0 +1,296 @@
+@import "normalize";
+@import "fonts.scss";
+
+// === Variables ===
+
+$color-blue: #0d319c;
+$color-white: #fff;
+
+
+// === / Variables ===
+
+// === Mixins ===
+
+@mixin font-lato {
+    font-family: 'Lato', sans-serif;
+}
+
+@mixin font-gotham {
+    font-family: 'Gotham Pro', sans-serif;
+}
+
+
+// === / Mixins ===
+
+// === Common ===
+
+
+.main-slider {
+    background: url('../img/more_copy.jpg') top no-repeat;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+	transition: .3s cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+.section-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.section-inner {
+    height: 100%;
+    padding-top: 12%;
+    max-width: calc(100% - ((105/2048) + (125/2048)) * 100%) /*на макете ширина 2048px, рассчитал относительные размеры падингов у данного контейнера*/
+    
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    @include font-lato;
+    height: 300vh;
+}
+
+h1 {
+    margin: 0;
+}
+// === / Common ===
+
+// === Section-hill ===
+
+.section-hill {
+
+
+    color: $color-blue;
+    overflow: hidden;
+
+    &-inner {
+        position: relative;
+
+        &_heading h1 {
+            @include font-gotham;
+
+            font-size: 57px;
+            font-weight: 400;
+            letter-spacing: -0.48px;
+        }
+
+        &_coords {
+            &-elem {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: absolute;
+
+                .circle {
+                    width: 25px;
+                    height: 25px;
+                    border: 1px solid black;
+                    border-radius: 50%;
+                }
+            }
+
+            &-1 {
+                flex-direction: row;
+                left: 55.4%;
+                top: 34%;
+
+                .circle {
+                    width: 55px;
+                    height: 55px;
+                    margin-right: 15px;
+                }
+            }
+
+            &-2 {
+
+                left: 19.2%;
+                top: 50.7%;
+
+                .circle {
+                    width: 35px;
+                    height: 35px;
+                    order: 1;
+                    margin-top: 15px;
+                }
+            }
+
+            &-3 {
+                left: 41.2%;
+                top: 65.1%;
+
+                .circle {
+                    order: 1;
+                    margin-top: 15px;
+                }
+            }
+
+            &-4 {
+                left: 78.9%;
+                top: 62.5%;
+
+                .circle {
+                    order: 1;
+                    margin-top: 15px;
+                }
+            }
+        }
+
+        &_leaf {
+            width: 100%;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            bottom: -20px;
+
+            span {
+                @include font-gotham;
+
+                font-size: 17px;
+                color: $color-white;
+                margin-bottom: 25px;
+                position: relative;
+                text-shadow: 0 0 119px rgba(0, 131, 254, 0.09);
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 37px;
+                    left: 35px;
+                    width: 33px;
+                    height: 3px;
+                    display: block;
+                    transform: rotate(45deg);
+                    float: right;
+                    border-radius: 2px;
+                    background-color: #fff;
+                    z-index: 1000;
+                }
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 37px;
+                    left: 57px;
+                    width: 33px;
+                    height: 3px;
+                    display: block;
+                    transform: rotate(-45deg);
+                    float: right;
+                    border-radius: 2px;
+                    background-color: #fff;
+                    z-index: 1000;
+                }
+            }
+
+            &-bg {
+                width: 80%;
+                height: 45px;
+                background-color: #f78b1f;
+                border-radius: 50%;
+                filter: blur(5px);
+            }
+        }
+    }
+
+}
+
+// === / Section-hill ===
+
+// === Section-base ===
+
+.section-base-inner {
+    display: flex;
+    justify-content: center;
+    padding-top: 20%;
+
+    &_heading{
+        width: 60%;
+
+        h2 {
+            @include font-gotham;
+
+            text-align: center;
+            color: $color-white;
+            font-size: 55px;
+            font-weight: 300;
+        }
+    }
+}
+
+// === / Section-base ===
+// === Section-slider ===
+
+.section-slider {
+    width: 100%;
+    color: $color-white;
+    flex-direction: row;
+    position: relative;
+    &-block {
+        width: 100%;
+        height: 100vh;
+        transition: 1s;
+        z-index: 100;
+    }
+    &-block1 {
+        background-color: red;
+    }
+    &-block2 {
+        background-color: blue;
+    }
+    &-block3 {
+        background-color: grey;
+    }
+    &-block.hidden {
+        display: none;
+    }
+    &-range {
+        position: fixed;
+        left: 50%;
+        top: 95%;
+        transform: translate(-50%,-50%);
+        display: flex;
+        justify-content: center;
+        width: 65%;
+        z-index: 10000;
+        &_input {
+            -webkit-appearance: none;
+            width: 250px;
+            height: 15px;
+            border-radius: 5px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: 0.2s;
+            transition: opacity 0.2s;
+        }
+        &_input:hover {
+            opacity: 1;
+        }
+        &_input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #4f5354;
+            cursor: pointer;
+        }
+        &_input::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #bfc0c1;
+            cursor: pointer;
+        }
+    }
+    
+}
+
+// === / Section-slider ===
