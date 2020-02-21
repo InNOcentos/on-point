@@ -19,6 +19,19 @@ $color-white: #fff;
     font-family: 'Gotham Pro', sans-serif;
 }
 
+@mixin arrow-common-incline {
+    position: absolute;
+    content: '';
+    background: url("../img/Rectangle_11_copy_26.svg") center no-repeat;
+    background-size: contain;
+}
+
+@mixin arrow-common-straight {
+    position: absolute;
+    content: '';
+    background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+    background-size: contain;
+}
 
 // === / Mixins ===
 
@@ -30,7 +43,7 @@ $color-white: #fff;
     background-size: cover;
     height: 100%;
     overflow: hidden;
-	transition: .3s cubic-bezier(0.5, 0, 0.5, 1);
+    transition: .3s cubic-bezier(0.5, 0, 0.5, 1);
 }
 
 .section-outer {
@@ -43,8 +56,8 @@ $color-white: #fff;
 .section-inner {
     height: 100%;
     padding-top: 12%;
-    max-width: calc(100% - ((105/2048) + (125/2048)) * 100%) /*на макете ширина 2048px, рассчитал относительные размеры падингов у данного контейнера*/
-    
+    width: calc(100% - ((105/2048) + (125/2048)) * 100%);
+
 }
 
 * {
@@ -54,11 +67,13 @@ $color-white: #fff;
 body {
     @include font-lato;
     height: 300vh;
+    overflow: hidden;
 }
 
 h1 {
     margin: 0;
 }
+
 // === / Common ===
 
 // === Section-hill ===
@@ -81,6 +96,7 @@ h1 {
         }
 
         &_coords {
+            position: relative;
             &-elem {
                 display: flex;
                 flex-direction: column;
@@ -90,8 +106,44 @@ h1 {
                 .circle {
                     width: 25px;
                     height: 25px;
-                    border: 1px solid black;
                     border-radius: 50%;
+                    border: 1px solid black;
+                    &-inner {
+                        position: relative;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            border-radius: 50%;
+                            background-image: radial-gradient(circle at center, #de771b, #d74729);
+                            animation: circle-bg 4s ease-out infinite;
+                        }
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            border-radius: 50%;
+                            background-image: radial-gradient(circle at center, transparent 66%, #d74729 68%, #de771b 100%);
+                            animation: circle 4s ease-out infinite;
+                        }
+                        &:nth-child(1)::after,
+                        &:nth-child(1)::before {
+                            animation-delay: 1s;
+                        }
+                        &:nth-child(2)::after,
+                        &:nth-child(2)::before {
+                            animation-delay: 2s;
+                        }
+                        &:nth-child(3)::after,
+                        &:nth-child(3)::before {
+                            animation-delay: 3s;
+                        }
+                        &:nth-child(4)::after,
+                        &:nth-child(4)::before {
+                            animation-delay: 4s;
+                        }
+                    }
                 }
             }
 
@@ -210,7 +262,7 @@ h1 {
     justify-content: center;
     padding-top: 20%;
 
-    &_heading{
+    &_heading {
         width: 60%;
 
         h2 {
@@ -226,71 +278,1129 @@ h1 {
 
 // === / Section-base ===
 // === Section-slider ===
-
+.new {
+    display: block;
+    transform: translateX(1024px);
+}
 .section-slider {
     width: 100%;
     color: $color-white;
     flex-direction: row;
     position: relative;
+
     &-block {
         width: 100%;
         height: 100vh;
-        transition: 1s;
         z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: 1s;
+        &_inner {
+            padding-top: 10%;
+        }
+
+        &_inner-heading {
+            margin-bottom: 65px;
+            padding-left: 16px;
+        }
+
+        &_inner-heading h2 {
+            @include font-gotham;
+
+            font-weight: 400;
+            color: $color-white;
+            font-size: 32px;
+        }
+
+        &_inner-content {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: 65%;
+            margin: 0 auto;
+            justify-content: space-between;
+
+            &-bottom {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                align-items: flex-end;
+
+            }
+
+            &-top,
+            &-bottom,
+            &-center {
+                display: flex;
+
+                .block1-bg {
+                    width: 90px;
+                    height: 90px;
+                    background-color: #ffffff;
+                    opacity: 0.2;
+                    border-radius: 50%;
+                }
+
+                .block-cells,
+                .block-muscles,
+                .block-liver,
+                .block-incretin,
+                .block-defect,
+                .block-fatCell,
+                .block-kidneys {
+
+                    position: relative;
+                }
+
+                .block-cells,
+                .block-muscles,
+                .block-liver,
+                .block-incretin,
+                .block-defect,
+                .block-fatCell,
+                .block-kidneys,
+                .block-brain,
+                .block-cells-title,
+                .block-muscles-title,
+                .block-liver-title,
+                .block-incretin-title,
+                .block-defect-title,
+                .block-fatCell-title,
+                .block-kidneys-title,
+                .block-brain-title {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .block1-cells-title,
+                .block1-muscles-title,
+                .block1-liver-title {
+                    margin-bottom: 18px;
+                }
+
+                .block-cells-icon,
+                .block-muscles-icon,
+                .block-liver-icon,
+                .block-incretin-icon,
+                .block-defect-icon,
+                .block-fatCell-icon,
+                .block-kidneys-icon,
+                .block-brain-icon {
+                    position: absolute;
+                    bottom: 0;
+                }
+
+                .block1-cells-icon,
+                .block1-incretin-icon,
+                .block1-defect-icon {
+                    font-size: 70px;
+                    bottom: 8%;
+                }
+
+                .block-muscles-icon {
+                    background: url('../img/musle.png') center no-repeat;
+                    background-size: contain;
+                    width: 65px;
+                    height: 65px;
+                    bottom: 7%;
+                }
+
+                .block-liver-icon {
+                    background: url('../img/Capa_1.png') center no-repeat;
+                    background-size: contain;
+                    width: 60px;
+                    height: 60px;
+                    bottom: 7%;
+                }
+
+                .block1-hyperglycemia {
+                    display: flex;
+                    align-items: flex-end;
+                    padding: 30px 60px;
+                    position: relative;
+                    border: 1px solid white;
+
+                    em {
+                        font-style: normal;
+                        font-size: 20px;
+                    }
+                }
+
+                .block-hyperglycemia:before {
+                    @include arrow-common-straight;
+
+                    width: 60px;
+                    height: 11px;
+                    left: -65px;
+                    bottom: 35px;
+                }
+
+                .block-text {
+                    @include font-lato;
+
+                    font-size: 23px;
+                }
+
+                .block-num {
+                    @include font-lato;
+
+                    font-size: 38px;
+                }
+            }
+        }
+
+        em {
+            font-style: normal;
+        }
     }
+    &-block.new {
+        transition: 1s;
+    }
+
     &-block1 {
-        background-color: red;
+        background: url("../img/ice_1.png") center no-repeat;
+        background-size: contain;
+        &_inner-heading {
+            margin-bottom: 0;
+
+            h2 {
+                margin: 0;
+            }
+        }
+
+        .block-cells:before {
+            @include arrow-common-incline;
+
+            width: 160px;
+            height: 150px;
+            left: -163px;
+            bottom: -110px;
+        }
+
+        .block-cells:after {
+            @include arrow-common-incline;
+
+            width: 160px;
+            height: 150px;
+            left: 95px;
+            bottom: -110px;
+            transform: rotate(-100deg);
+        }
+
+        .block-hyperglycemia:after {
+            @include arrow-common-straight;
+
+            width: 75px;
+            height: 11px;
+            left: 95px;
+            bottom: 125px;
+            transform: rotate(90deg);
+        }
+
+        .block-liver:before {
+            @include arrow-common-straight;
+
+            width: 60px;
+            height: 11px;
+            left: -65px;
+            bottom: 35px;
+            transform: rotate(180deg);
+        }
     }
-    &-block2 {
-        background-color: blue;
-    }
-    &-block3 {
-        background-color: grey;
-    }
+
     &-block.hidden {
         display: none;
     }
-    &-range {
-        position: fixed;
-        left: 50%;
-        top: 95%;
-        transform: translate(-50%,-50%);
-        display: flex;
-        justify-content: center;
-        width: 65%;
-        z-index: 10000;
-        &_input {
-            -webkit-appearance: none;
-            width: 250px;
-            height: 15px;
-            border-radius: 5px;
-            background: #d3d3d3;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: 0.2s;
-            transition: opacity 0.2s;
+
+    &-block2 {
+        background: url("../img/ice_2.png") center no-repeat;
+        background-size: contain;
+        .block2-num {
+            font-size: 37px;
         }
-        &_input:hover {
-            opacity: 1;
+
+        &_inner-heading {
+            margin-bottom: 0;
+
+            h2 {
+                margin: 0;
+            }
         }
-        &_input::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: #4f5354;
-            cursor: pointer;
-        }
-        &_input::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: #bfc0c1;
-            cursor: pointer;
+
+        &_inner-content {
+            width: 80%;
+
+            &-top,
+            &-center,
+            &-bottom {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+
+                .block2-incretin,
+                .block2-defect {
+                    flex-direction: row;
+                }
+
+                .block2-incretin {
+                    margin-right: 95px;
+                }
+
+                .block2-incretin:after {
+                    @include arrow-common-straight;
+
+                    width: 35px;
+                    height: 13px;
+                    top: 75px;
+                    left: 164px;
+                    transform: rotate(90deg);
+                }
+
+                .block2-cells {
+                    margin-right: 80px;
+                }
+
+                .block2-fatCell {
+                    align-items: center;
+                }
+
+                .block2-cells:after {
+                    @include arrow-common-straight;
+
+                    width: 35px;
+                    height: 13px;
+                    top: 155px;
+                    transform: rotate(90deg);
+                }
+
+                .block2-defect:after {
+                    @include arrow-common-straight;
+
+                    width: 35px;
+                    height: 13px;
+                    top: 75px;
+                    left: 12px;
+                    transform: rotate(90deg);
+                }
+
+                .block2-kidneys:after {
+                    @include arrow-common-straight;
+
+                    width: 23px;
+                    height: 13px;
+                    left: 127px;
+                    top: 25px;
+                }
+
+                .block2-fatCell:after {
+                    @include arrow-common-straight;
+
+                    width: 23px;
+                    height: 13px;
+                    left: -25px;
+                    top: 35px;
+                    transform: rotate(180deg);
+                }
+
+                .block2-brain:after {
+                    @include arrow-common-straight;
+
+                    width: 35px;
+                    height: 13px;
+                    top: -28px;
+                    transform: rotate(-90deg);
+                }
+
+                .block2-liver:after {
+                    @include arrow-common-straight;
+
+                    width: 35px;
+                    height: 13px;
+                    top: -28px;
+                    transform: rotate(-90deg);
+                }
+
+                .block2-muscles:after {
+                    @include arrow-common-straight;
+
+                    width: 35px;
+                    height: 13px;
+                    top: -28px;
+                    transform: rotate(-90deg);
+                }
+
+                .block2-brain {
+                    margin-right: 92px;
+                }
+
+                .block2-liver {
+                    margin-right: 73px;
+                }
+
+                .block2-bg {
+                    width: 60px;
+                    height: 60px;
+                    background-color: #ffffff;
+                    opacity: 0.2;
+                    border-radius: 50%;
+                }
+
+                .block2-cells-icon,
+                .block2-incretin-icon,
+                .block2-defect-icon {
+                    font-size: 37px;
+                }
+
+                .block2-incretin-icon {
+                    right: 20px;
+                    top: 10px;
+                }
+
+                .block2-cells-icon {
+                    font-size: 58px;
+                }
+
+                .block2-defect-icon {
+                    left: 20px;
+                    top: 10px;
+                }
+
+                .block2-cells-title {
+                    text-align: center;
+                    margin-bottom: 14px;
+                }
+
+                .block2-incretin-title {
+                    margin-right: 16px;
+
+                    em {
+                        text-align: right;
+                    }
+                }
+
+                .block-defect-title {
+                    order: 2;
+                    padding-left: 10px;
+                }
+
+                .block2-text {
+                    font-size: 20px;
+                }
+
+                ;
+
+                .block2-kidneys,
+                .block2-fatCell {
+                    display: flex;
+                    flex-direction: row;
+
+                }
+
+                .block2-kidneys-icon {
+                    position: absolute;
+                    width: 50px;
+                    height: 50px;
+                    background: url("../img/lipid_copy.png") center no-repeat;
+                    background-size: contain;
+                    right: 9px;
+                    top: 5px;
+                }
+
+                .block2-fatCell-icon {
+                    position: absolute;
+                    width: 50px;
+                    height: 50px;
+                    background: url("../img/lipid.png") center no-repeat;
+                    background-size: contain;
+                    left: 5px;
+                    top: 19px;
+                }
+
+                .block2-brain-icon {
+                    position: absolute;
+                    width: 50px;
+                    height: 50px;
+                    background: url("../img/brain.png") center no-repeat;
+                    background-size: contain;
+                    top: 5px;
+                }
+
+                .block2-liver-icon {
+                    width: 50px;
+                    height: 50px;
+                    background: url("../img/Capa_1.png") center no-repeat;
+                    background-size: contain;
+                    top: 6px;
+                }
+
+                .block2-muscles-icon {
+                    width: 50px;
+                    height: 50px;
+                    background: url("../img/musle.png") center no-repeat;
+                    background-size: contain;
+                    top: 6px;
+                }
+
+                .block-kidneys,
+                .block-fatCell,
+                .block-brain,
+                .block-liver,
+                .block-muscles {
+                    position: relative;
+                }
+
+                .block2-fatCell-title {
+                    order: 2;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .block2-fatCell-icon_bg {
+                    margin-right: 10px;
+                }
+
+                .block2-kidneys-title {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    justify-content: flex-end;
+                }
+
+                .block2-kidneys {
+                    position: relative;
+                }
+
+                .block2-kidneys-icon_bg {
+                    margin-left: 10px;
+                }
+
+                .block2-hyperglycemia {
+                    padding: 60px 120px;
+                    border: 1px solid $color-white;
+
+                    em {
+                        font-size: 22px;
+                    }
+                }
+
+                .block2-brain-title,
+                .block2-liver-title,
+                .block2-muscles-title {
+                    order: 2;
+                }
+
+            }
+
+            &-top {
+                align-items: flex-end;
+                margin-bottom: 40px;
+                justify-content: flex-start;
+                width: 97%;
+            }
+
+            &-center {
+                align-items: center;
+            }
+
+            &-bottom {
+                justify-content: center;
+                align-items: flex-start;
+                margin-top: 40px;
+                width: 60%;
+                justify-content: flex-start;
+            }
         }
     }
+
+    &-block3 {
+        background: url("../img/ice_3.png") center no-repeat;
+        background-size: contain;
+        position: relative;
+        &_inner-heading {
+            margin-bottom: 0;
+
+            h2 {
+                margin: 0;
+            }
+        }
+
+        &_inner-content {
+            width: 95%;
+
+            .block-text {
+                @include font-lato;
+
+                font-size: 20px;
+            }
+
+            &-top,
+            &-center,
+            &-bottom {
+                width: 100%;
+                justify-content: space-between;
+
+                .block3-bg {
+                    width: 60px;
+                    height: 60px;
+                    background-color: #ffffff;
+                    opacity: 0.2;
+                    border-radius: 50%;
+                }
+            }
+
+            &-top,
+            &-bottom {
+                width: 92.2%;
+                text-align: right;
+
+                .block3-incretin-title {
+                    align-items: flex-end;
+                }
+
+                .block3-defect-title {
+                    align-items: flex-start;
+                }
+            }
+
+            &-top {
+                align-items: flex-end;
+                padding-bottom: 40px;
+
+                .block3-microflora {
+                    padding-right: 143px;
+                    display: flex;
+                    align-items: flex-end;
+                    position: relative;
+
+                    &-title {
+                        display: flex;
+                        flex-direction: column;
+                        margin-right: 12px;
+                    }
+
+                    &-icon {
+                        position: absolute;
+                        width: 60px;
+                        height: 60px;
+                        background: url("../img/brain1_copy.png") center no-repeat;
+                        background-size: contain;
+                        left: 132px;
+                        top: 30px;
+                    }
+
+                    &:before {
+                        @include arrow-common-incline;
+
+                        width: 100px;
+                        height: 150px;
+                        left: 218px;
+                        bottom: -15px;
+                        transform: rotate(30deg);
+                    }
+
+                    &:after {
+                        @include arrow-common-incline;
+
+                        width: 100px;
+                        height: 150px;
+                        left: 218px;
+                        bottom: -25px;
+                        transform: rotate(210deg);
+                    }
+                }
+
+                .block3-cells {
+                    padding-right: 138px; // 143-5
+                    padding-bottom: 25px;
+                    position: relative;
+
+                    &-title {
+                        flex-direction: row;
+                    }
+
+                    &-icon {
+                        font-size: 80px;
+                        top: 35px;
+                    }
+
+                    .block3-bg {
+                        width: 90px;
+                        height: 90px;
+                    }
+
+                    em {
+                        font-size: 18px;
+                    }
+
+                    span {
+                        margin-right: 5px;
+                    }
+
+                    &:before {
+                        @include arrow-common-incline;
+
+                        width: 225px;
+                        height: 170px;
+                        left: 218px;
+                        bottom: -140px;
+                        left: -195px;
+                    }
+
+                    &:after {
+                        @include arrow-common-straight;
+
+                        width: 225px;
+                        height: 150px;
+                        left: 218px;
+                        bottom: -168px;
+                        left: -150px;
+                        transform: rotate(90deg);
+                        left: -65px;
+                    }
+                }
+
+                .block3-brain {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    position: relative;
+
+                    &-title {
+                        display: flex;
+                        align-items: flex-start;
+                        order: 2;
+                    }
+
+                    &-icon_bg {
+                        margin-right: 10px;
+                    }
+
+                    &-icon {
+                        position: absolute;
+                        width: 50px;
+                        height: 50px;
+                        background: url("../img/brain.png") center no-repeat;
+                        background-size: contain;
+                        left: 5px;
+                        top: 8px;
+                    }
+
+                    &:before {
+                        @include arrow-common-incline;
+
+                        width: 100px;
+                        height: 150px;
+                        left: 218px;
+                        bottom: -15px;
+                        left: -150px;
+                        transform: rotate(50deg);
+                        left: -127px
+                    }
+
+                    &:after {
+                        @include arrow-common-incline;
+
+                        width: 100px;
+                        height: 150px;
+                        left: 218px;
+                        bottom: -25px;
+                        left: -150px;
+                        transform: rotate(230deg);
+                        left: -127px
+                    }
+                }
+            }
+
+            &-center {
+                width: 113%;
+                // padding-top: 30px;
+                justify-content: flex-start;
+                padding-bottom: 55px;
+
+                .block-violation {
+                    padding-right: 40px;
+                    display: flex;
+                    align-items: center;
+
+                    &-title {
+                        display: flex;
+                        align-items: center;
+                        flex-direction: column;
+                    }
+                }
+
+                .block-violation {
+                    position: relative;
+
+                    &-icon {
+                        position: absolute;
+                        width: 50px;
+                        height: 50px;
+                        background: url("../img/infection.png") center no-repeat;
+                        background-size: contain;
+                        right: 46px;
+                        top: 20px;
+                    }
+
+                    &-title {
+                        align-items: flex-end;
+                        margin-right: 10px;
+
+                        em {
+                            text-align: end;
+                        }
+                    }
+
+                    &:before {
+                        @include arrow-common-incline;
+
+                        width: 140px;
+                        height: 150px;
+                        left: px;
+                        bottom: 50px;
+                        transform: rotate(5deg);
+                        right: -95px;
+                    }
+
+                    &:after {
+                        @include arrow-common-incline;
+
+                        width: 140px;
+                        height: 150px;
+                        bottom: 40px;
+                        transform: rotate(185deg);
+                        right: -100px;
+                    }
+
+                }
+
+                .block-incretin {
+                    padding-right: 27px;
+                    position: relative;
+
+                    &-title {
+                        text-align: right;
+                        align-items: flex-end;
+                    }
+                    
+                    &:before {
+                        @include arrow-common-straight;
+
+                        width: 70px;
+                        height: 150px;
+                        transform: rotate(90deg);
+                        bottom: 44px;
+                        left: 105px;
+                    }
+                    &:after {
+                        @include arrow-common-straight;
+
+                        width: 75px;
+                        height: 150px;
+                        transform: rotate(90deg);
+                        bottom: -116px;
+                        left: 101px;
+                    }
+                }
+            }
+
+            .block-defect {
+                position: relative;
+                &-title {
+                    text-align: left;
+                    align-items: flex-start;
+                }
+                &:before {
+                    @include arrow-common-straight;
+
+                    width: 70px;
+                    height: 150px;
+                    transform: rotate(90deg);
+                    bottom: 44px;
+                    left: -24px;
+                }
+                &:after {
+                    @include arrow-common-straight;
+
+                    width: 35px;
+                    height: 150px;
+                    transform: rotate(90deg);
+                    bottom: -76px;
+                    left: -8px;
+                }
+            }
+
+            .block3-sidebar {
+                width: 280px;
+                position: absolute;
+                right: 60px;
+                top: 310px;
+                height: 340px;
+                border-radius: 95px 95px 0 0;
+                background: url("../img/Rectangle_10_copy.png");
+
+                .block-sidebar-heading {
+                    position: relative;
+                    &:before {
+                        @include arrow-common-incline;
+
+                        width: 130px;
+                        height: 150px;
+                        bottom: -20px;
+                        transform: rotate(70deg);
+                        right: 260px;
+                    }
+
+                    &:after {
+                        @include arrow-common-incline;
+
+                        width: 130px;
+                        height: 150px;
+                        bottom: -29px;
+                        transform: rotate(250deg);
+                        right: 270px;
+                    }
+                }
+                h4 {
+                    font-size: 15px;
+                    text-align: center;
+                    font-weight: 300;
+                }
+
+                >div:nth-child(2)>div {
+                    padding-bottom: 20px;
+                    display: flex;
+
+                    >div:first-child {
+                        display: flex;
+                        flex-direction: column;
+                        order: 2;
+                        margin-left: 20px;
+
+                        em {
+                            font-size: 18px;
+                        }
+                    }
+
+                    >div:nth-child(2) {
+
+                        margin-left: 20px;
+                    }
+
+                }
+
+                .block3-sidebar-content_block {
+                    position: relative;
+
+                    .block3-liver-icon {
+                        position: absolute;
+                        width: 50px;
+                        height: 50px;
+                        background: url("../img/Capa_1.png") center no-repeat;
+                        background-size: contain;
+                        left: 25px;
+                        top: 8px;
+                    }
+
+                    .block3-muscles-icon {
+                        position: absolute;
+                        width: 50px;
+                        height: 50px;
+                        background: url("../img/musle.png") center no-repeat;
+                        background-size: contain;
+                        left: 25px;
+                        top: 4px;
+                    }
+
+                    .block3-fatCell-icon {
+                        position: absolute;
+                        width: 50px;
+                        height: 50px;
+                        background: url("../img/lipid_copy_2.png") center no-repeat;
+                        background-size: contain;
+                        left: 25px;
+                        top: 5px;
+                    }
+                }
+            }
+            &-bottom {
+                width: 82.2%;
+                justify-content: flex-start;
+                align-items: center;
+                position: relative;
     
+                .block3-stomach {
+                    padding-right: 125px;
+                    display: flex;
+                    position: relative;
+    
+                    &-title {
+                        display: flex;
+                        flex-direction: column;
+                        margin-right: 10px;
+                    }
+    
+                    &-icon {
+                        position: absolute;
+                        width: 45px;
+                        height: 45px;
+                        background: url("../img/stomach.png") center no-repeat;
+                        background-size: contain;
+                        left: 99px;
+                        top: 5px;
+                    }
+    
+                    &:before {
+                        @include font-lato;
+    
+                        content: '↓ амилин';
+                        position: absolute;
+                        left: 86px;
+                        top: -43px;
+    
+                    }
+    
+                    &:after {
+                        @include arrow-common-straight;
+    
+                        width: 22px;
+                        height: 13px;
+                        top: -20px;
+                        transform: rotate(90deg);
+                        left: 113px;
+    
+                    }
+                }
+    
+                .block3-hyperglycemia {
+                    position: relative;
+                    &:before {
+                        font-size: 12px;
+                        position: absolute;
+                        content: '↑ глюкагон';
+                        top: -60px;
+                        left: 79px;
+                    
+    
+                    }
+                    &:after {
+                        @include arrow-common-straight;
+
+                        width: 38px;
+                        height: 150px;
+                        transform: rotate(90deg);
+                        bottom: -26px;
+                        left: 80px;
+    
+                    }
+                }
+    
+                .block3-kidneys {
+                    flex-direction: row;
+                    position: absolute;
+                    left: 36.5%;
+                    bottom: -80px;
+    
+                    &-title {
+                        display: flex;
+                        flex-direction: column;
+                        margin-right: 10px;
+                        position: relative;
+                        &:before {
+                            @include arrow-common-straight;
+    
+                            
+                            width: 38px;
+                            height: 150px;
+                            transform: rotate(90deg);
+                            bottom: 7px;
+                            left: 65px;
+        
+                        }
+                        &:after {
+                            @include arrow-common-straight;
+    
+                            width: 38px;
+                            height: 150px;
+                            transform: rotate(270deg);
+                            bottom: 7px;
+                            left: 85px;
+        
+                        }
+                    }
+    
+                    &-icon {
+                        position: absolute;
+                        width: 50px;
+                        height: 50px;
+                        background: url("../img/lipid_copy.png") center no-repeat;
+                        background-size: contain;
+                        left: 65px;
+                        top: 5px;
+                    }
+                }
+            }
+        }
+    }
 }
+
+.section-slider-range {
+    position: fixed;
+    left: 50%;
+    top: 97%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    width: 65%;
+    z-index: 10000;
+
+    &_input {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 15px;
+        border-radius: 5px;
+        background: #d1eaff;
+        outline: none;
+    }
+
+    &_input:hover {
+        opacity: 1;
+    }
+
+    &_input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 47px;
+        height: 80px;
+        border-radius: 50%;
+        background: url("../img/Polygon_1_copy_3.png") center no-repeat;
+        background-size: contain;
+        cursor: pointer;
+    }
+
+    &_input::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #bfc0c1;
+        cursor: pointer;
+    }
+}
+.section-slider-year {
+    @include font-gotham;
+
+    font-size: 20px;
+    position: fixed;
+    top: 98.9%;
+    display: flex;
+    width: 65%;
+    justify-content: space-between;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
 
 // === / Section-slider ===

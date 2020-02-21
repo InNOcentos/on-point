@@ -1,6 +1,6 @@
 
 
-(function() {
+(function () {
 	"use strict";
 	/*[pan and well CSS scrolls]*/
 	var pnls = document.querySelectorAll('.main-slide').length,
@@ -29,7 +29,7 @@
 		if (hold === false) {
 			hold = true;
 			pan.style.transform = 'translateY(' + slength + 'vh)';
-			setTimeout(function() {
+			setTimeout(function () {
 				hold = false;
 			}, 1000);
 		}
@@ -50,7 +50,7 @@
 			/*[max time allowed to travel that distance]*/
 			elT, /*[elapsed time]*/
 			stT; /*[start time]*/
-		obj.addEventListener('touchstart', function(e) {
+		obj.addEventListener('touchstart', function (e) {
 			var tchs = e.changedTouches[0];
 			swdir = 'none';
 			sX = tchs.pageX;
@@ -59,17 +59,17 @@
 			//e.preventDefault();
 		}, false);
 
-		obj.addEventListener('touchmove', function(e) {
+		obj.addEventListener('touchmove', function (e) {
 
 			let target = e.target;
 			if (target == inputSlider) {
 				return;
 			}
 			e.preventDefault();
-			 /*[prevent scrolling when inside DIV]*/
+			/*[prevent scrolling when inside DIV]*/
 		}, false);
 
-		obj.addEventListener('touchend', function(e) {
+		obj.addEventListener('touchend', function (e) {
 			var tchs = e.changedTouches[0];
 			dX = tchs.pageX - sX;
 			dY = tchs.pageY - sY;
@@ -97,7 +97,7 @@
 	/*[assignments]*/
 	var mainSlider = document.getElementById('mainSlider');
 	mainSlider.style.transform = 'translateY(0)';
-	mainSlider.addEventListener('wheel', function(e) {
+	mainSlider.addEventListener('wheel', function (e) {
 		if (e.deltaY < 0) {
 			scdir = 'down';
 		}
@@ -110,7 +110,7 @@
 	_swipe(mainSlider);
 	var tops = document.querySelectorAll('.top');
 	for (var i = 0; i < tops.length; i++) {
-		tops[i].addEventListener('click', function() {
+		tops[i].addEventListener('click', function () {
 			scdir = 'top';
 			_scrollY(mainSlider);
 		});
@@ -124,19 +124,20 @@
 
 
 
-// Botom slider
+// Bottom slider
 
-let bottomSlider =  document.getElementById('myRange');
+let bottomSlider = document.getElementById('myRange');
 let sectionSlide1 = document.getElementById('sectionSlide1');
 let sectionSlide2 = document.getElementById('sectionSlide2');
 let sectionSlide3 = document.getElementById('sectionSlide3');
 
-bottomSlider.oninput = function(event) {
-	if (this.value < 40) {
+bottomSlider.oninput = function (event) {
+	if (this.value < 30) {
 		sectionSlide1.classList.remove('hidden');
 		sectionSlide2.classList.add('hidden');
 		sectionSlide3.classList.add('hidden');
-	} else if (this.value >= 40 && this.value < 70) {
+		
+	} else if (this.value >= 30 && this.value < 70) {
 		sectionSlide1.classList.add('hidden');
 		sectionSlide2.classList.remove('hidden');
 		sectionSlide3.classList.add('hidden');
@@ -146,3 +147,7 @@ bottomSlider.oninput = function(event) {
 		sectionSlide3.classList.remove('hidden');
 	}
 }
+
+
+
+

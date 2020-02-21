@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -306,14 +307,15 @@ template, [hidden] {
 .section-inner {
   height: 100%;
   padding-top: 12%;
-  max-width: calc(100% - ((105/2048) + (125/2048)) * 100%); }
+  width: calc(100% - ((105/2048) + (125/2048)) * 100%); }
 
 * {
   box-sizing: border-box; }
 
 body {
   font-family: 'Lato', sans-serif;
-  height: 300vh; }
+  height: 300vh;
+  overflow: hidden; }
 
 h1 {
   margin: 0; }
@@ -328,44 +330,71 @@ h1 {
       font-size: 57px;
       font-weight: 400;
       letter-spacing: -0.48px; }
-    .section-hill-inner_coords-elem {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: absolute; }
-      .section-hill-inner_coords-elem .circle {
-        width: 25px;
-        height: 25px;
-        border: 1px solid black;
-        border-radius: 50%; }
-    .section-hill-inner_coords-1 {
-      flex-direction: row;
-      left: 55.4%;
-      top: 34%; }
-      .section-hill-inner_coords-1 .circle {
-        width: 55px;
-        height: 55px;
-        margin-right: 15px; }
-    .section-hill-inner_coords-2 {
-      left: 19.2%;
-      top: 50.7%; }
-      .section-hill-inner_coords-2 .circle {
-        width: 35px;
-        height: 35px;
-        order: 1;
-        margin-top: 15px; }
-    .section-hill-inner_coords-3 {
-      left: 41.2%;
-      top: 65.1%; }
-      .section-hill-inner_coords-3 .circle {
-        order: 1;
-        margin-top: 15px; }
-    .section-hill-inner_coords-4 {
-      left: 78.9%;
-      top: 62.5%; }
-      .section-hill-inner_coords-4 .circle {
-        order: 1;
-        margin-top: 15px; }
+    .section-hill-inner_coords {
+      position: relative; }
+      .section-hill-inner_coords-elem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute; }
+        .section-hill-inner_coords-elem .circle {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          border: 1px solid black; }
+          .section-hill-inner_coords-elem .circle-inner {
+            position: relative;
+            top: 0;
+            right: 0;
+            bottom: 0; }
+            .section-hill-inner_coords-elem .circle-inner:before {
+              content: "";
+              position: absolute;
+              border-radius: 50%;
+              background-image: radial-gradient(circle at center, #de771b, #d74729);
+              animation: circle-bg 4s ease-out infinite; }
+            .section-hill-inner_coords-elem .circle-inner:after {
+              content: "";
+              position: absolute;
+              border-radius: 50%;
+              background-image: radial-gradient(circle at center, transparent 66%, #d74729 68%, #de771b 100%);
+              animation: circle 4s ease-out infinite; }
+            .section-hill-inner_coords-elem .circle-inner:nth-child(1)::after, .section-hill-inner_coords-elem .circle-inner:nth-child(1)::before {
+              animation-delay: 1s; }
+            .section-hill-inner_coords-elem .circle-inner:nth-child(2)::after, .section-hill-inner_coords-elem .circle-inner:nth-child(2)::before {
+              animation-delay: 2s; }
+            .section-hill-inner_coords-elem .circle-inner:nth-child(3)::after, .section-hill-inner_coords-elem .circle-inner:nth-child(3)::before {
+              animation-delay: 3s; }
+            .section-hill-inner_coords-elem .circle-inner:nth-child(4)::after, .section-hill-inner_coords-elem .circle-inner:nth-child(4)::before {
+              animation-delay: 4s; }
+      .section-hill-inner_coords-1 {
+        flex-direction: row;
+        left: 55.4%;
+        top: 34%; }
+        .section-hill-inner_coords-1 .circle {
+          width: 55px;
+          height: 55px;
+          margin-right: 15px; }
+      .section-hill-inner_coords-2 {
+        left: 19.2%;
+        top: 50.7%; }
+        .section-hill-inner_coords-2 .circle {
+          width: 35px;
+          height: 35px;
+          order: 1;
+          margin-top: 15px; }
+      .section-hill-inner_coords-3 {
+        left: 41.2%;
+        top: 65.1%; }
+        .section-hill-inner_coords-3 .circle {
+          order: 1;
+          margin-top: 15px; }
+      .section-hill-inner_coords-4 {
+        left: 78.9%;
+        top: 62.5%; }
+        .section-hill-inner_coords-4 .circle {
+          order: 1;
+          margin-top: 15px; }
     .section-hill-inner_leaf {
       width: 100%;
       position: absolute;
@@ -426,6 +455,10 @@ h1 {
       font-size: 55px;
       font-weight: 300; }
 
+.new {
+  display: block;
+  transform: translateX(1024px); }
+
 .section-slider {
   width: 100%;
   color: #fff;
@@ -434,48 +467,930 @@ h1 {
   .section-slider-block {
     width: 100%;
     height: 100vh;
-    transition: 1s;
-    z-index: 100; }
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 1s; }
+    .section-slider-block_inner {
+      padding-top: 10%; }
+    .section-slider-block_inner-heading {
+      margin-bottom: 65px;
+      padding-left: 16px; }
+    .section-slider-block_inner-heading h2 {
+      font-family: 'Gotham Pro', sans-serif;
+      font-weight: 400;
+      color: #fff;
+      font-size: 32px; }
+    .section-slider-block_inner-content {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 65%;
+      margin: 0 auto;
+      justify-content: space-between; }
+      .section-slider-block_inner-content-bottom {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: flex-end; }
+      .section-slider-block_inner-content-top, .section-slider-block_inner-content-bottom, .section-slider-block_inner-content-center {
+        display: flex; }
+        .section-slider-block_inner-content-top .block1-bg, .section-slider-block_inner-content-bottom .block1-bg, .section-slider-block_inner-content-center .block1-bg {
+          width: 90px;
+          height: 90px;
+          background-color: #ffffff;
+          opacity: 0.2;
+          border-radius: 50%; }
+        .section-slider-block_inner-content-top .block-cells,
+        .section-slider-block_inner-content-top .block-muscles,
+        .section-slider-block_inner-content-top .block-liver,
+        .section-slider-block_inner-content-top .block-incretin,
+        .section-slider-block_inner-content-top .block-defect,
+        .section-slider-block_inner-content-top .block-fatCell,
+        .section-slider-block_inner-content-top .block-kidneys, .section-slider-block_inner-content-bottom .block-cells,
+        .section-slider-block_inner-content-bottom .block-muscles,
+        .section-slider-block_inner-content-bottom .block-liver,
+        .section-slider-block_inner-content-bottom .block-incretin,
+        .section-slider-block_inner-content-bottom .block-defect,
+        .section-slider-block_inner-content-bottom .block-fatCell,
+        .section-slider-block_inner-content-bottom .block-kidneys, .section-slider-block_inner-content-center .block-cells,
+        .section-slider-block_inner-content-center .block-muscles,
+        .section-slider-block_inner-content-center .block-liver,
+        .section-slider-block_inner-content-center .block-incretin,
+        .section-slider-block_inner-content-center .block-defect,
+        .section-slider-block_inner-content-center .block-fatCell,
+        .section-slider-block_inner-content-center .block-kidneys {
+          position: relative; }
+        .section-slider-block_inner-content-top .block-cells,
+        .section-slider-block_inner-content-top .block-muscles,
+        .section-slider-block_inner-content-top .block-liver,
+        .section-slider-block_inner-content-top .block-incretin,
+        .section-slider-block_inner-content-top .block-defect,
+        .section-slider-block_inner-content-top .block-fatCell,
+        .section-slider-block_inner-content-top .block-kidneys,
+        .section-slider-block_inner-content-top .block-brain,
+        .section-slider-block_inner-content-top .block-cells-title,
+        .section-slider-block_inner-content-top .block-muscles-title,
+        .section-slider-block_inner-content-top .block-liver-title,
+        .section-slider-block_inner-content-top .block-incretin-title,
+        .section-slider-block_inner-content-top .block-defect-title,
+        .section-slider-block_inner-content-top .block-fatCell-title,
+        .section-slider-block_inner-content-top .block-kidneys-title,
+        .section-slider-block_inner-content-top .block-brain-title, .section-slider-block_inner-content-bottom .block-cells,
+        .section-slider-block_inner-content-bottom .block-muscles,
+        .section-slider-block_inner-content-bottom .block-liver,
+        .section-slider-block_inner-content-bottom .block-incretin,
+        .section-slider-block_inner-content-bottom .block-defect,
+        .section-slider-block_inner-content-bottom .block-fatCell,
+        .section-slider-block_inner-content-bottom .block-kidneys,
+        .section-slider-block_inner-content-bottom .block-brain,
+        .section-slider-block_inner-content-bottom .block-cells-title,
+        .section-slider-block_inner-content-bottom .block-muscles-title,
+        .section-slider-block_inner-content-bottom .block-liver-title,
+        .section-slider-block_inner-content-bottom .block-incretin-title,
+        .section-slider-block_inner-content-bottom .block-defect-title,
+        .section-slider-block_inner-content-bottom .block-fatCell-title,
+        .section-slider-block_inner-content-bottom .block-kidneys-title,
+        .section-slider-block_inner-content-bottom .block-brain-title, .section-slider-block_inner-content-center .block-cells,
+        .section-slider-block_inner-content-center .block-muscles,
+        .section-slider-block_inner-content-center .block-liver,
+        .section-slider-block_inner-content-center .block-incretin,
+        .section-slider-block_inner-content-center .block-defect,
+        .section-slider-block_inner-content-center .block-fatCell,
+        .section-slider-block_inner-content-center .block-kidneys,
+        .section-slider-block_inner-content-center .block-brain,
+        .section-slider-block_inner-content-center .block-cells-title,
+        .section-slider-block_inner-content-center .block-muscles-title,
+        .section-slider-block_inner-content-center .block-liver-title,
+        .section-slider-block_inner-content-center .block-incretin-title,
+        .section-slider-block_inner-content-center .block-defect-title,
+        .section-slider-block_inner-content-center .block-fatCell-title,
+        .section-slider-block_inner-content-center .block-kidneys-title,
+        .section-slider-block_inner-content-center .block-brain-title {
+          display: flex;
+          flex-direction: column;
+          align-items: center; }
+        .section-slider-block_inner-content-top .block1-cells-title,
+        .section-slider-block_inner-content-top .block1-muscles-title,
+        .section-slider-block_inner-content-top .block1-liver-title, .section-slider-block_inner-content-bottom .block1-cells-title,
+        .section-slider-block_inner-content-bottom .block1-muscles-title,
+        .section-slider-block_inner-content-bottom .block1-liver-title, .section-slider-block_inner-content-center .block1-cells-title,
+        .section-slider-block_inner-content-center .block1-muscles-title,
+        .section-slider-block_inner-content-center .block1-liver-title {
+          margin-bottom: 18px; }
+        .section-slider-block_inner-content-top .block-cells-icon,
+        .section-slider-block_inner-content-top .block-muscles-icon,
+        .section-slider-block_inner-content-top .block-liver-icon,
+        .section-slider-block_inner-content-top .block-incretin-icon,
+        .section-slider-block_inner-content-top .block-defect-icon,
+        .section-slider-block_inner-content-top .block-fatCell-icon,
+        .section-slider-block_inner-content-top .block-kidneys-icon,
+        .section-slider-block_inner-content-top .block-brain-icon, .section-slider-block_inner-content-bottom .block-cells-icon,
+        .section-slider-block_inner-content-bottom .block-muscles-icon,
+        .section-slider-block_inner-content-bottom .block-liver-icon,
+        .section-slider-block_inner-content-bottom .block-incretin-icon,
+        .section-slider-block_inner-content-bottom .block-defect-icon,
+        .section-slider-block_inner-content-bottom .block-fatCell-icon,
+        .section-slider-block_inner-content-bottom .block-kidneys-icon,
+        .section-slider-block_inner-content-bottom .block-brain-icon, .section-slider-block_inner-content-center .block-cells-icon,
+        .section-slider-block_inner-content-center .block-muscles-icon,
+        .section-slider-block_inner-content-center .block-liver-icon,
+        .section-slider-block_inner-content-center .block-incretin-icon,
+        .section-slider-block_inner-content-center .block-defect-icon,
+        .section-slider-block_inner-content-center .block-fatCell-icon,
+        .section-slider-block_inner-content-center .block-kidneys-icon,
+        .section-slider-block_inner-content-center .block-brain-icon {
+          position: absolute;
+          bottom: 0; }
+        .section-slider-block_inner-content-top .block1-cells-icon,
+        .section-slider-block_inner-content-top .block1-incretin-icon,
+        .section-slider-block_inner-content-top .block1-defect-icon, .section-slider-block_inner-content-bottom .block1-cells-icon,
+        .section-slider-block_inner-content-bottom .block1-incretin-icon,
+        .section-slider-block_inner-content-bottom .block1-defect-icon, .section-slider-block_inner-content-center .block1-cells-icon,
+        .section-slider-block_inner-content-center .block1-incretin-icon,
+        .section-slider-block_inner-content-center .block1-defect-icon {
+          font-size: 70px;
+          bottom: 8%; }
+        .section-slider-block_inner-content-top .block-muscles-icon, .section-slider-block_inner-content-bottom .block-muscles-icon, .section-slider-block_inner-content-center .block-muscles-icon {
+          background: url("../img/musle.png") center no-repeat;
+          background-size: contain;
+          width: 65px;
+          height: 65px;
+          bottom: 7%; }
+        .section-slider-block_inner-content-top .block-liver-icon, .section-slider-block_inner-content-bottom .block-liver-icon, .section-slider-block_inner-content-center .block-liver-icon {
+          background: url("../img/Capa_1.png") center no-repeat;
+          background-size: contain;
+          width: 60px;
+          height: 60px;
+          bottom: 7%; }
+        .section-slider-block_inner-content-top .block1-hyperglycemia, .section-slider-block_inner-content-bottom .block1-hyperglycemia, .section-slider-block_inner-content-center .block1-hyperglycemia {
+          display: flex;
+          align-items: flex-end;
+          padding: 30px 60px;
+          position: relative;
+          border: 1px solid white; }
+          .section-slider-block_inner-content-top .block1-hyperglycemia em, .section-slider-block_inner-content-bottom .block1-hyperglycemia em, .section-slider-block_inner-content-center .block1-hyperglycemia em {
+            font-style: normal;
+            font-size: 20px; }
+        .section-slider-block_inner-content-top .block-hyperglycemia:before, .section-slider-block_inner-content-bottom .block-hyperglycemia:before, .section-slider-block_inner-content-center .block-hyperglycemia:before {
+          position: absolute;
+          content: '';
+          background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+          background-size: contain;
+          width: 60px;
+          height: 11px;
+          left: -65px;
+          bottom: 35px; }
+        .section-slider-block_inner-content-top .block-text, .section-slider-block_inner-content-bottom .block-text, .section-slider-block_inner-content-center .block-text {
+          font-family: 'Lato', sans-serif;
+          font-size: 23px; }
+        .section-slider-block_inner-content-top .block-num, .section-slider-block_inner-content-bottom .block-num, .section-slider-block_inner-content-center .block-num {
+          font-family: 'Lato', sans-serif;
+          font-size: 38px; }
+    .section-slider-block em {
+      font-style: normal; }
+  .section-slider-block.new {
+    transition: 1s; }
   .section-slider-block1 {
-    background-color: red; }
-  .section-slider-block2 {
-    background-color: blue; }
-  .section-slider-block3 {
-    background-color: grey; }
+    background: url("../img/ice_1.png") center no-repeat;
+    background-size: contain; }
+    .section-slider-block1_inner-heading {
+      margin-bottom: 0; }
+      .section-slider-block1_inner-heading h2 {
+        margin: 0; }
+    .section-slider-block1 .block-cells:before {
+      position: absolute;
+      content: '';
+      background: url("../img/Rectangle_11_copy_26.svg") center no-repeat;
+      background-size: contain;
+      width: 160px;
+      height: 150px;
+      left: -163px;
+      bottom: -110px; }
+    .section-slider-block1 .block-cells:after {
+      position: absolute;
+      content: '';
+      background: url("../img/Rectangle_11_copy_26.svg") center no-repeat;
+      background-size: contain;
+      width: 160px;
+      height: 150px;
+      left: 95px;
+      bottom: -110px;
+      transform: rotate(-100deg); }
+    .section-slider-block1 .block-hyperglycemia:after {
+      position: absolute;
+      content: '';
+      background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+      background-size: contain;
+      width: 75px;
+      height: 11px;
+      left: 95px;
+      bottom: 125px;
+      transform: rotate(90deg); }
+    .section-slider-block1 .block-liver:before {
+      position: absolute;
+      content: '';
+      background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+      background-size: contain;
+      width: 60px;
+      height: 11px;
+      left: -65px;
+      bottom: 35px;
+      transform: rotate(180deg); }
   .section-slider-block.hidden {
     display: none; }
-  .section-slider-range {
-    position: fixed;
-    left: 50%;
-    top: 95%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    width: 65%;
-    z-index: 10000; }
-    .section-slider-range_input {
-      -webkit-appearance: none;
-      width: 250px;
-      height: 15px;
-      border-radius: 5px;
-      background: #d3d3d3;
-      outline: none;
-      opacity: 0.7;
-      -webkit-transition: 0.2s;
-      transition: opacity 0.2s; }
-    .section-slider-range_input:hover {
-      opacity: 1; }
-    .section-slider-range_input::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      background: #4f5354;
-      cursor: pointer; }
-    .section-slider-range_input::-moz-range-thumb {
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      background: #bfc0c1;
-      cursor: pointer; }
+  .section-slider-block2 {
+    background: url("../img/ice_2.png") center no-repeat;
+    background-size: contain; }
+    .section-slider-block2 .block2-num {
+      font-size: 37px; }
+    .section-slider-block2_inner-heading {
+      margin-bottom: 0; }
+      .section-slider-block2_inner-heading h2 {
+        margin: 0; }
+    .section-slider-block2_inner-content {
+      width: 80%; }
+      .section-slider-block2_inner-content-top, .section-slider-block2_inner-content-center, .section-slider-block2_inner-content-bottom {
+        width: 100%;
+        display: flex;
+        justify-content: space-between; }
+        .section-slider-block2_inner-content-top .block2-incretin,
+        .section-slider-block2_inner-content-top .block2-defect, .section-slider-block2_inner-content-center .block2-incretin,
+        .section-slider-block2_inner-content-center .block2-defect, .section-slider-block2_inner-content-bottom .block2-incretin,
+        .section-slider-block2_inner-content-bottom .block2-defect {
+          flex-direction: row; }
+        .section-slider-block2_inner-content-top .block2-incretin, .section-slider-block2_inner-content-center .block2-incretin, .section-slider-block2_inner-content-bottom .block2-incretin {
+          margin-right: 95px; }
+        .section-slider-block2_inner-content-top .block2-incretin:after, .section-slider-block2_inner-content-center .block2-incretin:after, .section-slider-block2_inner-content-bottom .block2-incretin:after {
+          position: absolute;
+          content: '';
+          background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+          background-size: contain;
+          width: 35px;
+          height: 13px;
+          top: 75px;
+          left: 164px;
+          transform: rotate(90deg); }
+        .section-slider-block2_inner-content-top .block2-cells, .section-slider-block2_inner-content-center .block2-cells, .section-slider-block2_inner-content-bottom .block2-cells {
+          margin-right: 80px; }
+        .section-slider-block2_inner-content-top .block2-fatCell, .section-slider-block2_inner-content-center .block2-fatCell, .section-slider-block2_inner-content-bottom .block2-fatCell {
+          align-items: center; }
+        .section-slider-block2_inner-content-top .block2-cells:after, .section-slider-block2_inner-content-center .block2-cells:after, .section-slider-block2_inner-content-bottom .block2-cells:after {
+          position: absolute;
+          content: '';
+          background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+          background-size: contain;
+          width: 35px;
+          height: 13px;
+          top: 155px;
+          transform: rotate(90deg); }
+        .section-slider-block2_inner-content-top .block2-defect:after, .section-slider-block2_inner-content-center .block2-defect:after, .section-slider-block2_inner-content-bottom .block2-defect:after {
+          position: absolute;
+          content: '';
+          background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+          background-size: contain;
+          width: 35px;
+          height: 13px;
+          top: 75px;
+          left: 12px;
+          transform: rotate(90deg); }
+        .section-slider-block2_inner-content-top .block2-kidneys:after, .section-slider-block2_inner-content-center .block2-kidneys:after, .section-slider-block2_inner-content-bottom .block2-kidneys:after {
+          position: absolute;
+          content: '';
+          background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+          background-size: contain;
+          width: 23px;
+          height: 13px;
+          left: 127px;
+          top: 25px; }
+        .section-slider-block2_inner-content-top .block2-fatCell:after, .section-slider-block2_inner-content-center .block2-fatCell:after, .section-slider-block2_inner-content-bottom .block2-fatCell:after {
+          position: absolute;
+          content: '';
+          background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+          background-size: contain;
+          width: 23px;
+          height: 13px;
+          left: -25px;
+          top: 35px;
+          transform: rotate(180deg); }
+        .section-slider-block2_inner-content-top .block2-brain:after, .section-slider-block2_inner-content-center .block2-brain:after, .section-slider-block2_inner-content-bottom .block2-brain:after {
+          position: absolute;
+          content: '';
+          background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+          background-size: contain;
+          width: 35px;
+          height: 13px;
+          top: -28px;
+          transform: rotate(-90deg); }
+        .section-slider-block2_inner-content-top .block2-liver:after, .section-slider-block2_inner-content-center .block2-liver:after, .section-slider-block2_inner-content-bottom .block2-liver:after {
+          position: absolute;
+          content: '';
+          background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+          background-size: contain;
+          width: 35px;
+          height: 13px;
+          top: -28px;
+          transform: rotate(-90deg); }
+        .section-slider-block2_inner-content-top .block2-muscles:after, .section-slider-block2_inner-content-center .block2-muscles:after, .section-slider-block2_inner-content-bottom .block2-muscles:after {
+          position: absolute;
+          content: '';
+          background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+          background-size: contain;
+          width: 35px;
+          height: 13px;
+          top: -28px;
+          transform: rotate(-90deg); }
+        .section-slider-block2_inner-content-top .block2-brain, .section-slider-block2_inner-content-center .block2-brain, .section-slider-block2_inner-content-bottom .block2-brain {
+          margin-right: 92px; }
+        .section-slider-block2_inner-content-top .block2-liver, .section-slider-block2_inner-content-center .block2-liver, .section-slider-block2_inner-content-bottom .block2-liver {
+          margin-right: 73px; }
+        .section-slider-block2_inner-content-top .block2-bg, .section-slider-block2_inner-content-center .block2-bg, .section-slider-block2_inner-content-bottom .block2-bg {
+          width: 60px;
+          height: 60px;
+          background-color: #ffffff;
+          opacity: 0.2;
+          border-radius: 50%; }
+        .section-slider-block2_inner-content-top .block2-cells-icon,
+        .section-slider-block2_inner-content-top .block2-incretin-icon,
+        .section-slider-block2_inner-content-top .block2-defect-icon, .section-slider-block2_inner-content-center .block2-cells-icon,
+        .section-slider-block2_inner-content-center .block2-incretin-icon,
+        .section-slider-block2_inner-content-center .block2-defect-icon, .section-slider-block2_inner-content-bottom .block2-cells-icon,
+        .section-slider-block2_inner-content-bottom .block2-incretin-icon,
+        .section-slider-block2_inner-content-bottom .block2-defect-icon {
+          font-size: 37px; }
+        .section-slider-block2_inner-content-top .block2-incretin-icon, .section-slider-block2_inner-content-center .block2-incretin-icon, .section-slider-block2_inner-content-bottom .block2-incretin-icon {
+          right: 20px;
+          top: 10px; }
+        .section-slider-block2_inner-content-top .block2-cells-icon, .section-slider-block2_inner-content-center .block2-cells-icon, .section-slider-block2_inner-content-bottom .block2-cells-icon {
+          font-size: 58px; }
+        .section-slider-block2_inner-content-top .block2-defect-icon, .section-slider-block2_inner-content-center .block2-defect-icon, .section-slider-block2_inner-content-bottom .block2-defect-icon {
+          left: 20px;
+          top: 10px; }
+        .section-slider-block2_inner-content-top .block2-cells-title, .section-slider-block2_inner-content-center .block2-cells-title, .section-slider-block2_inner-content-bottom .block2-cells-title {
+          text-align: center;
+          margin-bottom: 14px; }
+        .section-slider-block2_inner-content-top .block2-incretin-title, .section-slider-block2_inner-content-center .block2-incretin-title, .section-slider-block2_inner-content-bottom .block2-incretin-title {
+          margin-right: 16px; }
+          .section-slider-block2_inner-content-top .block2-incretin-title em, .section-slider-block2_inner-content-center .block2-incretin-title em, .section-slider-block2_inner-content-bottom .block2-incretin-title em {
+            text-align: right; }
+        .section-slider-block2_inner-content-top .block-defect-title, .section-slider-block2_inner-content-center .block-defect-title, .section-slider-block2_inner-content-bottom .block-defect-title {
+          order: 2;
+          padding-left: 10px; }
+        .section-slider-block2_inner-content-top .block2-text, .section-slider-block2_inner-content-center .block2-text, .section-slider-block2_inner-content-bottom .block2-text {
+          font-size: 20px; }
+        .section-slider-block2_inner-content-top .block2-kidneys,
+        .section-slider-block2_inner-content-top .block2-fatCell, .section-slider-block2_inner-content-center .block2-kidneys,
+        .section-slider-block2_inner-content-center .block2-fatCell, .section-slider-block2_inner-content-bottom .block2-kidneys,
+        .section-slider-block2_inner-content-bottom .block2-fatCell {
+          display: flex;
+          flex-direction: row; }
+        .section-slider-block2_inner-content-top .block2-kidneys-icon, .section-slider-block2_inner-content-center .block2-kidneys-icon, .section-slider-block2_inner-content-bottom .block2-kidneys-icon {
+          position: absolute;
+          width: 50px;
+          height: 50px;
+          background: url("../img/lipid_copy.png") center no-repeat;
+          background-size: contain;
+          right: 9px;
+          top: 5px; }
+        .section-slider-block2_inner-content-top .block2-fatCell-icon, .section-slider-block2_inner-content-center .block2-fatCell-icon, .section-slider-block2_inner-content-bottom .block2-fatCell-icon {
+          position: absolute;
+          width: 50px;
+          height: 50px;
+          background: url("../img/lipid.png") center no-repeat;
+          background-size: contain;
+          left: 5px;
+          top: 19px; }
+        .section-slider-block2_inner-content-top .block2-brain-icon, .section-slider-block2_inner-content-center .block2-brain-icon, .section-slider-block2_inner-content-bottom .block2-brain-icon {
+          position: absolute;
+          width: 50px;
+          height: 50px;
+          background: url("../img/brain.png") center no-repeat;
+          background-size: contain;
+          top: 5px; }
+        .section-slider-block2_inner-content-top .block2-liver-icon, .section-slider-block2_inner-content-center .block2-liver-icon, .section-slider-block2_inner-content-bottom .block2-liver-icon {
+          width: 50px;
+          height: 50px;
+          background: url("../img/Capa_1.png") center no-repeat;
+          background-size: contain;
+          top: 6px; }
+        .section-slider-block2_inner-content-top .block2-muscles-icon, .section-slider-block2_inner-content-center .block2-muscles-icon, .section-slider-block2_inner-content-bottom .block2-muscles-icon {
+          width: 50px;
+          height: 50px;
+          background: url("../img/musle.png") center no-repeat;
+          background-size: contain;
+          top: 6px; }
+        .section-slider-block2_inner-content-top .block-kidneys,
+        .section-slider-block2_inner-content-top .block-fatCell,
+        .section-slider-block2_inner-content-top .block-brain,
+        .section-slider-block2_inner-content-top .block-liver,
+        .section-slider-block2_inner-content-top .block-muscles, .section-slider-block2_inner-content-center .block-kidneys,
+        .section-slider-block2_inner-content-center .block-fatCell,
+        .section-slider-block2_inner-content-center .block-brain,
+        .section-slider-block2_inner-content-center .block-liver,
+        .section-slider-block2_inner-content-center .block-muscles, .section-slider-block2_inner-content-bottom .block-kidneys,
+        .section-slider-block2_inner-content-bottom .block-fatCell,
+        .section-slider-block2_inner-content-bottom .block-brain,
+        .section-slider-block2_inner-content-bottom .block-liver,
+        .section-slider-block2_inner-content-bottom .block-muscles {
+          position: relative; }
+        .section-slider-block2_inner-content-top .block2-fatCell-title, .section-slider-block2_inner-content-center .block2-fatCell-title, .section-slider-block2_inner-content-bottom .block2-fatCell-title {
+          order: 2;
+          display: flex;
+          flex-direction: column; }
+        .section-slider-block2_inner-content-top .block2-fatCell-icon_bg, .section-slider-block2_inner-content-center .block2-fatCell-icon_bg, .section-slider-block2_inner-content-bottom .block2-fatCell-icon_bg {
+          margin-right: 10px; }
+        .section-slider-block2_inner-content-top .block2-kidneys-title, .section-slider-block2_inner-content-center .block2-kidneys-title, .section-slider-block2_inner-content-bottom .block2-kidneys-title {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          justify-content: flex-end; }
+        .section-slider-block2_inner-content-top .block2-kidneys, .section-slider-block2_inner-content-center .block2-kidneys, .section-slider-block2_inner-content-bottom .block2-kidneys {
+          position: relative; }
+        .section-slider-block2_inner-content-top .block2-kidneys-icon_bg, .section-slider-block2_inner-content-center .block2-kidneys-icon_bg, .section-slider-block2_inner-content-bottom .block2-kidneys-icon_bg {
+          margin-left: 10px; }
+        .section-slider-block2_inner-content-top .block2-hyperglycemia, .section-slider-block2_inner-content-center .block2-hyperglycemia, .section-slider-block2_inner-content-bottom .block2-hyperglycemia {
+          padding: 60px 120px;
+          border: 1px solid #fff; }
+          .section-slider-block2_inner-content-top .block2-hyperglycemia em, .section-slider-block2_inner-content-center .block2-hyperglycemia em, .section-slider-block2_inner-content-bottom .block2-hyperglycemia em {
+            font-size: 22px; }
+        .section-slider-block2_inner-content-top .block2-brain-title,
+        .section-slider-block2_inner-content-top .block2-liver-title,
+        .section-slider-block2_inner-content-top .block2-muscles-title, .section-slider-block2_inner-content-center .block2-brain-title,
+        .section-slider-block2_inner-content-center .block2-liver-title,
+        .section-slider-block2_inner-content-center .block2-muscles-title, .section-slider-block2_inner-content-bottom .block2-brain-title,
+        .section-slider-block2_inner-content-bottom .block2-liver-title,
+        .section-slider-block2_inner-content-bottom .block2-muscles-title {
+          order: 2; }
+      .section-slider-block2_inner-content-top {
+        align-items: flex-end;
+        margin-bottom: 40px;
+        justify-content: flex-start;
+        width: 97%; }
+      .section-slider-block2_inner-content-center {
+        align-items: center; }
+      .section-slider-block2_inner-content-bottom {
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: 40px;
+        width: 60%;
+        justify-content: flex-start; }
+  .section-slider-block3 {
+    background: url("../img/ice_3.png") center no-repeat;
+    background-size: contain;
+    position: relative; }
+    .section-slider-block3_inner-heading {
+      margin-bottom: 0; }
+      .section-slider-block3_inner-heading h2 {
+        margin: 0; }
+    .section-slider-block3_inner-content {
+      width: 95%; }
+      .section-slider-block3_inner-content .block-text {
+        font-family: 'Lato', sans-serif;
+        font-size: 20px; }
+      .section-slider-block3_inner-content-top, .section-slider-block3_inner-content-center, .section-slider-block3_inner-content-bottom {
+        width: 100%;
+        justify-content: space-between; }
+        .section-slider-block3_inner-content-top .block3-bg, .section-slider-block3_inner-content-center .block3-bg, .section-slider-block3_inner-content-bottom .block3-bg {
+          width: 60px;
+          height: 60px;
+          background-color: #ffffff;
+          opacity: 0.2;
+          border-radius: 50%; }
+      .section-slider-block3_inner-content-top, .section-slider-block3_inner-content-bottom {
+        width: 92.2%;
+        text-align: right; }
+        .section-slider-block3_inner-content-top .block3-incretin-title, .section-slider-block3_inner-content-bottom .block3-incretin-title {
+          align-items: flex-end; }
+        .section-slider-block3_inner-content-top .block3-defect-title, .section-slider-block3_inner-content-bottom .block3-defect-title {
+          align-items: flex-start; }
+      .section-slider-block3_inner-content-top {
+        align-items: flex-end;
+        padding-bottom: 40px; }
+        .section-slider-block3_inner-content-top .block3-microflora {
+          padding-right: 143px;
+          display: flex;
+          align-items: flex-end;
+          position: relative; }
+          .section-slider-block3_inner-content-top .block3-microflora-title {
+            display: flex;
+            flex-direction: column;
+            margin-right: 12px; }
+          .section-slider-block3_inner-content-top .block3-microflora-icon {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: url("../img/brain1_copy.png") center no-repeat;
+            background-size: contain;
+            left: 132px;
+            top: 30px; }
+          .section-slider-block3_inner-content-top .block3-microflora:before {
+            position: absolute;
+            content: '';
+            background: url("../img/Rectangle_11_copy_26.svg") center no-repeat;
+            background-size: contain;
+            width: 100px;
+            height: 150px;
+            left: 218px;
+            bottom: -15px;
+            transform: rotate(30deg); }
+          .section-slider-block3_inner-content-top .block3-microflora:after {
+            position: absolute;
+            content: '';
+            background: url("../img/Rectangle_11_copy_26.svg") center no-repeat;
+            background-size: contain;
+            width: 100px;
+            height: 150px;
+            left: 218px;
+            bottom: -25px;
+            transform: rotate(210deg); }
+        .section-slider-block3_inner-content-top .block3-cells {
+          padding-right: 138px;
+          padding-bottom: 25px;
+          position: relative; }
+          .section-slider-block3_inner-content-top .block3-cells-title {
+            flex-direction: row; }
+          .section-slider-block3_inner-content-top .block3-cells-icon {
+            font-size: 80px;
+            top: 35px; }
+          .section-slider-block3_inner-content-top .block3-cells .block3-bg {
+            width: 90px;
+            height: 90px; }
+          .section-slider-block3_inner-content-top .block3-cells em {
+            font-size: 18px; }
+          .section-slider-block3_inner-content-top .block3-cells span {
+            margin-right: 5px; }
+          .section-slider-block3_inner-content-top .block3-cells:before {
+            position: absolute;
+            content: '';
+            background: url("../img/Rectangle_11_copy_26.svg") center no-repeat;
+            background-size: contain;
+            width: 225px;
+            height: 170px;
+            left: 218px;
+            bottom: -140px;
+            left: -195px; }
+          .section-slider-block3_inner-content-top .block3-cells:after {
+            position: absolute;
+            content: '';
+            background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+            background-size: contain;
+            width: 225px;
+            height: 150px;
+            left: 218px;
+            bottom: -168px;
+            left: -150px;
+            transform: rotate(90deg);
+            left: -65px; }
+        .section-slider-block3_inner-content-top .block3-brain {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          position: relative; }
+          .section-slider-block3_inner-content-top .block3-brain-title {
+            display: flex;
+            align-items: flex-start;
+            order: 2; }
+          .section-slider-block3_inner-content-top .block3-brain-icon_bg {
+            margin-right: 10px; }
+          .section-slider-block3_inner-content-top .block3-brain-icon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url("../img/brain.png") center no-repeat;
+            background-size: contain;
+            left: 5px;
+            top: 8px; }
+          .section-slider-block3_inner-content-top .block3-brain:before {
+            position: absolute;
+            content: '';
+            background: url("../img/Rectangle_11_copy_26.svg") center no-repeat;
+            background-size: contain;
+            width: 100px;
+            height: 150px;
+            left: 218px;
+            bottom: -15px;
+            left: -150px;
+            transform: rotate(50deg);
+            left: -127px; }
+          .section-slider-block3_inner-content-top .block3-brain:after {
+            position: absolute;
+            content: '';
+            background: url("../img/Rectangle_11_copy_26.svg") center no-repeat;
+            background-size: contain;
+            width: 100px;
+            height: 150px;
+            left: 218px;
+            bottom: -25px;
+            left: -150px;
+            transform: rotate(230deg);
+            left: -127px; }
+      .section-slider-block3_inner-content-center {
+        width: 113%;
+        justify-content: flex-start;
+        padding-bottom: 55px; }
+        .section-slider-block3_inner-content-center .block-violation {
+          padding-right: 40px;
+          display: flex;
+          align-items: center; }
+          .section-slider-block3_inner-content-center .block-violation-title {
+            display: flex;
+            align-items: center;
+            flex-direction: column; }
+        .section-slider-block3_inner-content-center .block-violation {
+          position: relative; }
+          .section-slider-block3_inner-content-center .block-violation-icon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url("../img/infection.png") center no-repeat;
+            background-size: contain;
+            right: 46px;
+            top: 20px; }
+          .section-slider-block3_inner-content-center .block-violation-title {
+            align-items: flex-end;
+            margin-right: 10px; }
+            .section-slider-block3_inner-content-center .block-violation-title em {
+              text-align: end; }
+          .section-slider-block3_inner-content-center .block-violation:before {
+            position: absolute;
+            content: '';
+            background: url("../img/Rectangle_11_copy_26.svg") center no-repeat;
+            background-size: contain;
+            width: 140px;
+            height: 150px;
+            left: px;
+            bottom: 50px;
+            transform: rotate(5deg);
+            right: -95px; }
+          .section-slider-block3_inner-content-center .block-violation:after {
+            position: absolute;
+            content: '';
+            background: url("../img/Rectangle_11_copy_26.svg") center no-repeat;
+            background-size: contain;
+            width: 140px;
+            height: 150px;
+            bottom: 40px;
+            transform: rotate(185deg);
+            right: -100px; }
+        .section-slider-block3_inner-content-center .block-incretin {
+          padding-right: 27px;
+          position: relative; }
+          .section-slider-block3_inner-content-center .block-incretin-title {
+            text-align: right;
+            align-items: flex-end; }
+          .section-slider-block3_inner-content-center .block-incretin:before {
+            position: absolute;
+            content: '';
+            background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+            background-size: contain;
+            width: 70px;
+            height: 150px;
+            transform: rotate(90deg);
+            bottom: 44px;
+            left: 105px; }
+          .section-slider-block3_inner-content-center .block-incretin:after {
+            position: absolute;
+            content: '';
+            background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+            background-size: contain;
+            width: 75px;
+            height: 150px;
+            transform: rotate(90deg);
+            bottom: -116px;
+            left: 101px; }
+      .section-slider-block3_inner-content .block-defect {
+        position: relative; }
+        .section-slider-block3_inner-content .block-defect-title {
+          text-align: left;
+          align-items: flex-start; }
+        .section-slider-block3_inner-content .block-defect:before {
+          position: absolute;
+          content: '';
+          background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+          background-size: contain;
+          width: 70px;
+          height: 150px;
+          transform: rotate(90deg);
+          bottom: 44px;
+          left: -24px; }
+        .section-slider-block3_inner-content .block-defect:after {
+          position: absolute;
+          content: '';
+          background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+          background-size: contain;
+          width: 35px;
+          height: 150px;
+          transform: rotate(90deg);
+          bottom: -76px;
+          left: -8px; }
+      .section-slider-block3_inner-content .block3-sidebar {
+        width: 280px;
+        position: absolute;
+        right: 60px;
+        top: 310px;
+        height: 340px;
+        border-radius: 95px 95px 0 0;
+        background: url("../img/Rectangle_10_copy.png"); }
+        .section-slider-block3_inner-content .block3-sidebar .block-sidebar-heading {
+          position: relative; }
+          .section-slider-block3_inner-content .block3-sidebar .block-sidebar-heading:before {
+            position: absolute;
+            content: '';
+            background: url("../img/Rectangle_11_copy_26.svg") center no-repeat;
+            background-size: contain;
+            width: 130px;
+            height: 150px;
+            bottom: -20px;
+            transform: rotate(70deg);
+            right: 260px; }
+          .section-slider-block3_inner-content .block3-sidebar .block-sidebar-heading:after {
+            position: absolute;
+            content: '';
+            background: url("../img/Rectangle_11_copy_26.svg") center no-repeat;
+            background-size: contain;
+            width: 130px;
+            height: 150px;
+            bottom: -29px;
+            transform: rotate(250deg);
+            right: 270px; }
+        .section-slider-block3_inner-content .block3-sidebar h4 {
+          font-size: 15px;
+          text-align: center;
+          font-weight: 300; }
+        .section-slider-block3_inner-content .block3-sidebar > div:nth-child(2) > div {
+          padding-bottom: 20px;
+          display: flex; }
+          .section-slider-block3_inner-content .block3-sidebar > div:nth-child(2) > div > div:first-child {
+            display: flex;
+            flex-direction: column;
+            order: 2;
+            margin-left: 20px; }
+            .section-slider-block3_inner-content .block3-sidebar > div:nth-child(2) > div > div:first-child em {
+              font-size: 18px; }
+          .section-slider-block3_inner-content .block3-sidebar > div:nth-child(2) > div > div:nth-child(2) {
+            margin-left: 20px; }
+        .section-slider-block3_inner-content .block3-sidebar .block3-sidebar-content_block {
+          position: relative; }
+          .section-slider-block3_inner-content .block3-sidebar .block3-sidebar-content_block .block3-liver-icon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url("../img/Capa_1.png") center no-repeat;
+            background-size: contain;
+            left: 25px;
+            top: 8px; }
+          .section-slider-block3_inner-content .block3-sidebar .block3-sidebar-content_block .block3-muscles-icon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url("../img/musle.png") center no-repeat;
+            background-size: contain;
+            left: 25px;
+            top: 4px; }
+          .section-slider-block3_inner-content .block3-sidebar .block3-sidebar-content_block .block3-fatCell-icon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url("../img/lipid_copy_2.png") center no-repeat;
+            background-size: contain;
+            left: 25px;
+            top: 5px; }
+      .section-slider-block3_inner-content-bottom {
+        width: 82.2%;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative; }
+        .section-slider-block3_inner-content-bottom .block3-stomach {
+          padding-right: 125px;
+          display: flex;
+          position: relative; }
+          .section-slider-block3_inner-content-bottom .block3-stomach-title {
+            display: flex;
+            flex-direction: column;
+            margin-right: 10px; }
+          .section-slider-block3_inner-content-bottom .block3-stomach-icon {
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            background: url("../img/stomach.png") center no-repeat;
+            background-size: contain;
+            left: 99px;
+            top: 5px; }
+          .section-slider-block3_inner-content-bottom .block3-stomach:before {
+            font-family: 'Lato', sans-serif;
+            content: '↓ амилин';
+            position: absolute;
+            left: 86px;
+            top: -43px; }
+          .section-slider-block3_inner-content-bottom .block3-stomach:after {
+            position: absolute;
+            content: '';
+            background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+            background-size: contain;
+            width: 22px;
+            height: 13px;
+            top: -20px;
+            transform: rotate(90deg);
+            left: 113px; }
+        .section-slider-block3_inner-content-bottom .block3-hyperglycemia {
+          position: relative; }
+          .section-slider-block3_inner-content-bottom .block3-hyperglycemia:before {
+            font-size: 12px;
+            position: absolute;
+            content: '↑ глюкагон';
+            top: -60px;
+            left: 79px; }
+          .section-slider-block3_inner-content-bottom .block3-hyperglycemia:after {
+            position: absolute;
+            content: '';
+            background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+            background-size: contain;
+            width: 38px;
+            height: 150px;
+            transform: rotate(90deg);
+            bottom: -26px;
+            left: 80px; }
+        .section-slider-block3_inner-content-bottom .block3-kidneys {
+          flex-direction: row;
+          position: absolute;
+          left: 36.5%;
+          bottom: -80px; }
+          .section-slider-block3_inner-content-bottom .block3-kidneys-title {
+            display: flex;
+            flex-direction: column;
+            margin-right: 10px;
+            position: relative; }
+            .section-slider-block3_inner-content-bottom .block3-kidneys-title:before {
+              position: absolute;
+              content: '';
+              background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+              background-size: contain;
+              width: 38px;
+              height: 150px;
+              transform: rotate(90deg);
+              bottom: 7px;
+              left: 65px; }
+            .section-slider-block3_inner-content-bottom .block3-kidneys-title:after {
+              position: absolute;
+              content: '';
+              background: url("../img/Rectangle_11_copy_36.svg") center no-repeat;
+              background-size: contain;
+              width: 38px;
+              height: 150px;
+              transform: rotate(270deg);
+              bottom: 7px;
+              left: 85px; }
+          .section-slider-block3_inner-content-bottom .block3-kidneys-icon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url("../img/lipid_copy.png") center no-repeat;
+            background-size: contain;
+            left: 65px;
+            top: 5px; }
+
+.section-slider-range {
+  position: fixed;
+  left: 50%;
+  top: 97%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  width: 65%;
+  z-index: 10000; }
+  .section-slider-range_input {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d1eaff;
+    outline: none; }
+  .section-slider-range_input:hover {
+    opacity: 1; }
+  .section-slider-range_input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 47px;
+    height: 80px;
+    border-radius: 50%;
+    background: url("../img/Polygon_1_copy_3.png") center no-repeat;
+    background-size: contain;
+    cursor: pointer; }
+  .section-slider-range_input::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #bfc0c1;
+    cursor: pointer; }
+
+.section-slider-year {
+  font-family: 'Gotham Pro', sans-serif;
+  font-size: 20px;
+  position: fixed;
+  top: 98.9%;
+  display: flex;
+  width: 65%;
+  justify-content: space-between;
+  left: 50%;
+  transform: translate(-50%, -50%); }
